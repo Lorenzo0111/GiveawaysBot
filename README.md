@@ -38,50 +38,31 @@
 
 # 📖 Introduction
 
-A starter template equipped with several interaction commands and one event.
+A simple giveaway bot.
+
+> ⚠️ Remember to setup the .env file
 
 # 🏗 Development
 
 ```
-npm install
-npm run dev
+pnpm install
+pnpm run dev
 ```
 
 If you want to use [Nodemon](https://nodemon.io/) to auto-reload while in development:
 
 ```
-npm run watch
+pnpm run watch
 ```
 
 # 💻 Production
 
 ```
-npm install --production
-npm run build
-npm run start
+pnpm install --production
+pnpm prisma migrate deploy
+pnpm run build
+pnpm run start
 ```
-
-# 🐋 Docker
-
-To start your application:
-
-```
-docker-compose up -d
-```
-
-To shut down your application:
-
-```
-docker-compose down
-```
-
-To view your application's logs:
-
-```
-docker-compose logs
-```
-
-For the full command list please view the [Docker Documentation](https://docs.docker.com/engine/reference/commandline/cli/).
 
 # 📜 Documentation
 
