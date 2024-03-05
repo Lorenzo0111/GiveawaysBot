@@ -1,0 +1,37 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Giveaway {
+  id String @id @default(uuid())
+
+  guildId   String
+  channelId String
+  messageId String
+
+  startAt  DateTime @default(now())
+  endAt    DateTime
+
+  winners Int
+  name    String
+
+  members Member[]
+
+  @@unique([guildId, channelId, messageId])
+}
+
+model Member {
+  id String @id @default(uuid())
+
+  giveaway   Giveaway @relation(fields: [giveawayId], references: [id], onDelete: Cascade)
+  giveawayId String
+
+  userId String
+
+  @@unique([giveawayId, userId])
+}
