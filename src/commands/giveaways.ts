@@ -60,6 +60,10 @@ export class GiveawaysCommand {
       .setTitle(name)
       .setDescription("Click the button below to enter the giveaway!")
       .setColor(Colors.Blurple)
+      .setFields({
+        name: "Entries",
+        value: "0",
+      })
       .setTimestamp(Date.now() + durationMs)
       .setFooter({ text: "Ends at" });
 

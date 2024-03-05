@@ -1,4 +1,4 @@
-import { ButtonInteraction } from "discord.js";
+import { ButtonInteraction, EmbedBuilder } from "discord.js";
 import { ButtonComponent, Discord } from "discordx";
 import { prisma } from "../main.js";
 
@@ -20,6 +20,11 @@ export class ButtonsListener {
         members: {
           where: {
             userId: interaction.user.id,
+          },
+        },
+        _count: {
+          select: {
+            members: true,
           },
         },
       },
@@ -49,6 +54,13 @@ export class ButtonsListener {
     await interaction.reply({
       content: "You have entered the giveaway",
       ephemeral: true,
+    });
+
+    const embed = interaction.message.embeds[0];
+    embed.fields[0].value = `${giveaway._count.members + 1}`;
+
+    await interaction.message.edit({
+      embeds: [embed],
     });
   }
 }
